@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 public class EnderecoDTO {
 
 
-    private Integer id;
     private String logradouro;
     private int numero;
     private String complemento;

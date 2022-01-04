@@ -1,5 +1,6 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
+import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.UserDTO;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
@@ -17,8 +18,6 @@ public class ClienteDTOImput {
 
     private String nome;
 
-    private String email;
-
     private String cpf;
 
     private String rg;
@@ -26,10 +25,13 @@ public class ClienteDTOImput {
     @Valid
     private EnderecoDTOImput endereco;
 
+    @Valid
+    private UserDTOImput usuario;
+
 
     private double renda;
 
 
-    private String senha;
+
 
 }

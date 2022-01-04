@@ -1,6 +1,7 @@
 package br.com.tqi.tqi_evolution_avaliacao.domain.service;
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.mapper.EmprestimoMapper;
+import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.EmprestimoDTO;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.EmprestimoDTOImput;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.response.MessageResponse;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;
@@ -24,29 +25,26 @@ public class EmprestimoService {
         return emprestimoRepository.findAll();
     }
 
-    public Emprestimo listarEmprestimo(Integer emprestimoid){
-        return emprestimoRepository.findById(emprestimoid)
-                .orElseThrow(() -> new NegocioException("Emprestimo não encontrado"));
-    }
+
 
     @Transactional
     public MessageResponse create (EmprestimoDTOImput emprestimoDTOImput){
         Emprestimo novoEmprestimo = emprestimoMapper.toEntity(emprestimoDTOImput);
         Emprestimo emprestimoCadastrado = emprestimoRepository.save(novoEmprestimo);
-        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getId(), " - " + emprestimoCadastrado.getCliente().getNome());
+        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getCodigoEmprestimo(), " - " + emprestimoCadastrado.getCliente().getNome());
         return messageResponse;
     }
 
 
 
-    public MessageResponse update (Integer id, EmprestimoDTOImput emprestimoDTOImput) throws EmprestimoNaoEncontradoException {
+    public MessageResponse update (Integer id, EmprestimoDTO emprestimoDTO) throws EmprestimoNaoEncontradoException {
         emprestimoRepository.findById(id).orElseThrow(() -> new EmprestimoNaoEncontradoException(id));
-        Emprestimo emprestimoAtualizado = emprestimoMapper.toEntity(emprestimoDTOImput);
+        Emprestimo emprestimoAtualizado = emprestimoMapper.toEntity2(emprestimoDTO);
         Emprestimo emprestimoSalvo = emprestimoRepository.save(emprestimoAtualizado);
 
         MessageResponse messageResponse =
                 createMessage("Emprestimo atualizado com sucesso ",
-                emprestimoSalvo.getId()," - " + emprestimoSalvo.getCliente().getNome());
+                emprestimoSalvo.getCodigoEmprestimo()," - " + emprestimoSalvo.getCliente().getNome());
         return messageResponse;
 
     }

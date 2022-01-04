@@ -33,4 +33,8 @@ public class ClienteMapper {
         return modelMapper.map(clienteDTOImput,Cliente.class);
     }
 
+    public Cliente toEntity2(ClienteDTO clienteDTO){
+
+        return modelMapper.map(clienteDTO,Cliente.class);
+    }
 }

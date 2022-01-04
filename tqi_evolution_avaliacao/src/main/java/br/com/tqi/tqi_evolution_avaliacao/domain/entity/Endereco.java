@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Endereco {
 
 

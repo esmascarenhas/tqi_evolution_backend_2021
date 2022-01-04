@@ -26,7 +26,8 @@ public class Emprestimo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer id;
+    @Column(name = "id")
+    private Integer codigoEmprestimo;
 
     @NotEmpty
     @Column(name = "valor_emprestimo")
@@ -51,5 +52,7 @@ public class Emprestimo {
 
     @ManyToOne
     private Cliente cliente;
+
+
 
 }

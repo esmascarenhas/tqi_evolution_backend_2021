@@ -18,7 +18,7 @@ import java.time.OffsetDateTime;
 @Setter
 public class EmprestimoDTO extends RepresentationModel<EmprestimoDTO> implements Serializable {
 
-    private Integer id;
+    private Integer codigoEmprestimo;
     private double valorEmprestimo;
     private LocalDate dataPrimeiraParcela;
     private int quantidadeParcelas;

@@ -1,10 +1,17 @@
+CREATE TABLE usuario ( id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+ email varchar(20) not null,
+ senha varchar(20) not null,
+ role VARCHAR(14) NOT NULL,
+
+ PRIMARY KEY(id) );
+
 CREATE TABLE cliente ( id INT NOT NULL AUTO_INCREMENT,
  nome VARCHAR(120) NOT NULL,
- email VARCHAR(80) NOT NULL,
  cpf VARCHAR(12) NOT NULL,
  rg VARCHAR(14) NOT NULL,
  renda DOUBLE UNSIGNED NULL,
- senha VARCHAR(60) NOT NULL,
+ usuario_id INT NOT NULL,
+
 
  endereco_logradouro VARCHAR(255) NOT NULL,
  endereco_numero INT NOT NULL,
@@ -16,6 +23,9 @@ CREATE TABLE cliente ( id INT NOT NULL AUTO_INCREMENT,
  endereco_pais VARCHAR(80) NOT NULL,
 
   PRIMARY KEY(id) );
+
+   alter table cliente add constraint fk_cliente_usuario
+   foreign key (usuario_id) references usuario (id);
 
 
 
