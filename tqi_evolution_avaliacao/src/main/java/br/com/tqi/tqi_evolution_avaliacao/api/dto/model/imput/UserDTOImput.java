@@ -4,7 +4,10 @@ package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class UserDTOImput {
+
+public class UserDTOImput  {
+
+
 
     private String email;
     private String senha;

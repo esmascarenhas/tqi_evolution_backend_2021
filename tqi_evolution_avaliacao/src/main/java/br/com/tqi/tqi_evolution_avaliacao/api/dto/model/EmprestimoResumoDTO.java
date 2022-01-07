@@ -1,5 +1,6 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model;
 
+import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.resumo.ClienteEmprestimoModel;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.domain.service;
+package br.com.tqi.tqi_evolution_avaliacao.domain.service.cliente;
 
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.mapper.ClienteMapper;
@@ -35,31 +35,24 @@ public class ClienteService {
                 .orElseThrow(() -> new NegocioException("Cliente não encontrado"));
         return clienteMapper.toModel(cliente);
     }
-    @Transactional
+/*    @Transactional
     public MessageResponse create (Cliente cliente){
         clienteRepository.save(cliente);
         MessageResponse messageResponse = createMessage("Cliente cadastrado com sucesso ", cliente.getId(), " - " + cliente.getNome());
         return messageResponse;
-    }
+    }*/
 
 
 
- /*   @Transactional
+    @Transactional
     public MessageResponse create (ClienteDTOImput clienteDTOImput){
-        Cliente novoAluno = clienteMapper.toEntity(clienteDTOImput);
-        novoAluno.getUsuario().setRoles(RolesUser.USER);
-        Cliente alunoCadastrado = clienteRepository.save(novoAluno);
+        Cliente novoCliente = clienteMapper.toEntity(clienteDTOImput);
+        novoCliente.getUsuario().setRoles(RolesUser.ROLES_USER);
+        Cliente alunoCadastrado = clienteRepository.save(novoCliente);
         MessageResponse messageResponse = createMessage("Cliente cadastrado com sucesso ", alunoCadastrado.getId(), " - " + alunoCadastrado.getNome());
         return messageResponse;
-    }*/
-    //	public Entrega solicitar(Entrega entrega) {
-    //		Cliente cliente = catalogoClienteService.buscar(entrega.getCliente().getId());
-    //
-    //		entrega.setCliente(cliente);
-    //		entrega.setStatus(StatusEntrega.PENDENTE);
-    //		entrega.setDataPedido(OffsetDateTime.now());
-    //
-    //		return entregaRepository.save(entrega);
+    }
+
 
 
     public MessageResponse update (Integer id, ClienteDTO clienteDTO) throws ClienteNaoEncontradoException {

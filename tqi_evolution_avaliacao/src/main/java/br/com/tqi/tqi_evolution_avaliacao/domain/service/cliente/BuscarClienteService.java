@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.domain.service;
+package br.com.tqi.tqi_evolution_avaliacao.domain.service.cliente;
 
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Cliente;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;

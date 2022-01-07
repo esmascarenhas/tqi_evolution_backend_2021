@@ -2,10 +2,7 @@ package br.com.tqi.tqi_evolution_avaliacao.domain.entity;
 
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.RolesUser;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,10 +19,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "usuario")
 public class UserSecurity  implements Serializable {
+
+
+    private static final long serialVersionUID = 4804914140206993767L;
 
     private Integer id;
     private String email;

@@ -1,20 +1,18 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
-import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.UserDTO;
+
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
-import javax.persistence.*;
+
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
+
 
 @Getter
 @Setter
-public class ClienteDTOImput {
+public class ClienteDTOImput implements Serializable {
 
 
+    private static final long serialVersionUID = -3497069937363697605L;
 
     private String nome;
 

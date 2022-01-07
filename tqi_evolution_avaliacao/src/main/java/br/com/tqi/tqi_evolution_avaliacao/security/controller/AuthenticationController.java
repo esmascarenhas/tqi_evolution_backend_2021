@@ -1,6 +1,6 @@
 package br.com.tqi.tqi_evolution_avaliacao.security.controller;
 
-import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.UserDTO;
+
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.UserDTOImput;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.response.Response;
 import br.com.tqi.tqi_evolution_avaliacao.security.model.TokenDTO;
@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping(path = "/api")
 public class AuthenticationController {
 
     private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
@@ -53,7 +54,7 @@ public class AuthenticationController {
      * //@return ResponseEntity<Response<TokenDto>>
      * //@throws AuthenticationException
      */
-    @PostMapping("api/v1/auth")
+    @PostMapping("/v1/auth")
     @ApiOperation(value = "Gera um Token de acesso")
     public ResponseEntity<Response<TokenDTO>> gerarTokenJwt(@Valid @RequestBody UserDTOImput authenticationDto,
                                                             BindingResult result) throws AuthenticationException {

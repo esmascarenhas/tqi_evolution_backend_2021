@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
+
 @Configuration
 @ComponentScan("br.com.tqi.tqi_evolution_avaliacao")
 @SpringBootApplication
@@ -27,17 +29,25 @@ public class TqiEvolutionAvaliacaoApplication {
 		@Bean
 		public CommandLineRunner commandLineRunner(){
 			return args -> {
+
 				UserSecurity usuario = new UserSecurity();
+				usuario = userRepository.findByEmail("usuario@email.com");
+				if (Objects.isNull(usuario)){
+					usuario = new UserSecurity();
+				}
 				usuario.setEmail("usuario@email.com");
 				usuario.setRoles(RolesUser.ROLES_USER);
 				usuario.setSenha(SenhaUtils.gerarBCrypt("123456"));
-				this.userRepository.save(usuario);
+				userRepository.save(usuario);
 
-				UserSecurity admin = new UserSecurity();
-				admin.setEmail("admin@email.com");
-				admin.setRoles(RolesUser.ROLES_ADMIN);
-				admin.setSenha(SenhaUtils.gerarBCrypt("654321"));
-				this.userRepository.save(admin);
+				usuario = userRepository.findByEmail("admin@email.com");
+				if (Objects.isNull(usuario)){
+					usuario = new UserSecurity();
+				}
+				usuario.setEmail("admin@email.com");
+				usuario.setRoles(RolesUser.ROLES_ADMIN);
+				usuario.setSenha(SenhaUtils.gerarBCrypt("654321"));
+				userRepository.save(usuario);
 
 
 			};

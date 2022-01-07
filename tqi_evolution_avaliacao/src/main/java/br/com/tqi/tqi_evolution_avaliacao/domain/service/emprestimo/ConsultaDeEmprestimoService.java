@@ -1,19 +1,14 @@
-package br.com.tqi.tqi_evolution_avaliacao.domain.service;
+package br.com.tqi.tqi_evolution_avaliacao.domain.service.emprestimo;
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.mapper.EmprestimoMapper;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.EmprestimoDTO;
-import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.EmprestimoDTOImput;
-import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Cliente;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;
-import br.com.tqi.tqi_evolution_avaliacao.domain.exception.ClienteNaoEncontradoException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.NegocioException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.ClienteRepository;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.EmprestimoRepository;
+import br.com.tqi.tqi_evolution_avaliacao.domain.service.cliente.ClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor

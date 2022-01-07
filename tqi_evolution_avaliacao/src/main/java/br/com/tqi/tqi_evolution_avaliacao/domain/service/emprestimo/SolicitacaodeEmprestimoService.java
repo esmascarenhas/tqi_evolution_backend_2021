@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.domain.service;
+package br.com.tqi.tqi_evolution_avaliacao.domain.service.emprestimo;
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.mapper.EmprestimoMapper;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.EmprestimoDTOImput;
@@ -8,6 +8,7 @@ import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.ClienteNaoEncontradoException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.EmprestimoRepository;
+import br.com.tqi.tqi_evolution_avaliacao.domain.service.cliente.BuscarClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

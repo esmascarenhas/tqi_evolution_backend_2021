@@ -2,14 +2,14 @@ package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Getter
 @Setter
-public class EnderecoDTOImput {
+public class EnderecoDTOImput implements Serializable {
 
+
+    private static final long serialVersionUID = -4217120013049575331L;
 
     private String logradouro;
 

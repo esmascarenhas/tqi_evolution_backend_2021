@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.tqi.tqi_evolution_avaliacao.security.utils.SecurityConstants;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,13 +44,33 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain)
             throws ServletException, IOException {
+        final HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        final HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String token = request.getHeader(constants.HEADER_STRING);
-        if (token != null && token.startsWith(constants.TOKEN_PREFIX)) {
-            token = token.substring(7);
-//extrair o token do cabeçalho Authorization e verifica se ele existe e
-// se ele é um token do tipo Bearer
+        if (token == null) {
+            token = httpRequest.getParameter("token");
         }
+        if (httpRequest.getRequestURI().contains("/api/v1/auth") ||
+                httpRequest.getRequestURI().contains("v2/api-docs") ||
+                httpRequest.getRequestURI().contains("/public/") ||
+                httpRequest.getRequestURI().contains("/api/v1/status") ||
+                httpRequest.getRequestURI().contains("swagger") ||
+                httpRequest.getMethod().equalsIgnoreCase("OPTIONS")
+        ) {
+            chain.doFilter(request, response);
+            return;
+        }
+        if (token == null) {
+            httpResponse.sendError(HttpStatus.UNAUTHORIZED.value());
+            return;
+        }
+
+        if (token.startsWith(constants.TOKEN_PREFIX)) {
+            token = token.replace(constants.TOKEN_PREFIX, Strings.EMPTY);
+        }
+
         String username = jwtTokenUtil.getUsernameFromToken(token);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

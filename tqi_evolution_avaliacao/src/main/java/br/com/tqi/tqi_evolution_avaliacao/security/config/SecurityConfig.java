@@ -66,14 +66,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         log.info("Password encoded {}", passwordEncoder.encode("Shalom@12"));
 
-        auth.inMemoryAuthentication()
+  /*      auth.inMemoryAuthentication()
                 .withUser("Admin")
                 .password(passwordEncoder.encode("@654321"))
-                .roles("USER", "ADMIN")
+                .roles("ROLES_USER", "ROLES_ADMIN")
                 .and()
                 .withUser("Usuario")
                 .password(passwordEncoder.encode("@123456"))
-                .roles("USER");
+                .roles("ROLES_USER");*/
 
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }//para validação dos dados de usuário irá chamar a classe userDetailsService
@@ -90,7 +90,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
-                .antMatchers("/api/v1/auth/**","/api/v1/status/**","/**/swagger-ui.html","/**/webjars/**", "/**/v2/api-docs/**", "/v2/api-docs", "/**/swagger-resources/**", "/swagger-resources")
+               // .antMatchers("/api/v1/auth/**","/api/v1/status/**","/**/swagger-ui.html","/**/webjars/**", "/**/v2/api-docs/**", "/v2/api-docs", "/**/swagger-resources/**", "/swagger-resources")
+                .antMatchers("/api/v1/auth/**","/api/v1/status/**").permitAll()
+                .antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/springfox-swagger-ui/**", "/api/v1/swagger.json")
                 .permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

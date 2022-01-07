@@ -1,24 +1,18 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
+
 
 @Getter
 @Setter
-public class EmprestimoDTOImput {
+public class EmprestimoDTOImput implements Serializable {
+
+
+    private static final long serialVersionUID = -2828780400064566821L;
 
     @Valid
     private ClienteIdImput clienteid;

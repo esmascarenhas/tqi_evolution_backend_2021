@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.domain.service;
+package br.com.tqi.tqi_evolution_avaliacao.domain.service.emprestimo;
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.mapper.EmprestimoMapper;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.EmprestimoDTO;
@@ -27,13 +27,13 @@ public class EmprestimoService {
 
 
 
-    @Transactional
+/*    @Transactional
     public MessageResponse create (EmprestimoDTOImput emprestimoDTOImput){
         Emprestimo novoEmprestimo = emprestimoMapper.toEntity(emprestimoDTOImput);
         Emprestimo emprestimoCadastrado = emprestimoRepository.save(novoEmprestimo);
         MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getCodigoEmprestimo(), " - " + emprestimoCadastrado.getCliente().getNome());
         return messageResponse;
-    }
+    }*/
 
 
 

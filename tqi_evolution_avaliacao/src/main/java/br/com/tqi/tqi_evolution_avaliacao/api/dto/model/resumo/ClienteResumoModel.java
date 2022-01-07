@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.api.dto.model;
+package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.resumo;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -23,6 +23,7 @@ public class ClienteMapper {
     public ClienteDTO toModel (Cliente cliente){
         ClienteDTO clienteDTO = modelMapper.map(cliente,ClienteDTO.class);
         clienteDTO.add(linkTo(methodOn(ClienteController.class).listAll()).withRel("Lista de Clientes"));
+        //clienteDTO.add(linkTo(methodOn(ClienteController.class).ClienteById()))
         return clienteDTO;
     }
 
