@@ -38,7 +38,7 @@ public class TqiEvolutionAvaliacaoApplication {
 					usuario = new UserSecurity();
 				}
 				usuario.setEmail("usuario@email.com");
-				usuario.setRoles(RolesUser.ROLES_USER);
+				usuario.setRoles(RolesUser.ROLE_USER);
 				usuario.setSenha(SenhaUtils.gerarBCrypt("123456"));
 				userRepository.save(usuario);
 
@@ -47,7 +47,7 @@ public class TqiEvolutionAvaliacaoApplication {
 					usuario = new UserSecurity();
 				}
 				usuario.setEmail("admin@email.com");
-				usuario.setRoles(RolesUser.ROLES_ADMIN);
+				usuario.setRoles(RolesUser.ROLE_ADMIN);
 				usuario.setSenha(SenhaUtils.gerarBCrypt("654321"));
 				userRepository.save(usuario);
 

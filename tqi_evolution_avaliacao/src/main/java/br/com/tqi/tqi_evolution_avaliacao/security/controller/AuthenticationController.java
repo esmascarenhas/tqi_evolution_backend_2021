@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/api")
+@ApiOperation(value = "Sistema de Análise de Crédito - Realiza autenticação do usuário." )
 public class AuthenticationController {
 
     private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
@@ -77,15 +78,5 @@ public class AuthenticationController {
     }
 
 
-  /*  @PostMapping
-    public ResponseEntity<TokenDTO> auth(@RequestBody @Validated UserDTO userDTO){
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getSenha());
 
-        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-        String token = tokenService.generateToken(authentication);
-
-        return ResponseEntity.ok(TokenDTO.builder().type("Bearer").token(token).build());
-
-    }*/
 }

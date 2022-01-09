@@ -25,6 +25,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Api("SAC API Rest - Sistema de Análise de Crédito")
+@ApiOperation(value = "Sistema de Análise de Crédito - Controle de Emprestimo" )
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
@@ -42,17 +43,15 @@ public class EmprestimoController {
     private BuscarClienteService buscarClienteService;
 
     @GetMapping
-    //@PreAuthorize("hasAnyRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Lista os emprestimos cadastrados. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ApiOperation(value = "Lista os emprestimos cadastrados - Acesso ADMIN. ")
     public List<EmprestimoDTO> listAll(){
 
         return emprestimoMapper.toCollectionModel(emprestimoService.listarEmprestimo());
     }
     @GetMapping("/detalhe/{emprestimoid}")
-    //@PreAuthorize("hasAnyRole('ROLES_ADMIN','ROLES_USER')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Detalha um emprestimo específico. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')" )
+    @ApiOperation(value = "Detalha um emprestimo específico - Acesso Admin.e Usuário. ")
     public ResponseEntity<DetalheEmprestimo> detalheById(@PathVariable Integer emprestimoid){
         return emprestimoRepository.findById(emprestimoid)
                 .map(emprestimo -> ResponseEntity.ok(emprestimoMapper.toModel3(emprestimo)))
@@ -60,28 +59,25 @@ public class EmprestimoController {
     }
 
     @GetMapping("/{clienteid}")
-    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Acompanhamento das solicitações de empréstimo.")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    @ApiOperation(value = "Acompanhamento das solicitações de empréstimo - Acesso Admin.e Usuário.")
     public List<EmprestimoResumoDTO> listarEmprestimo (@PathVariable Integer clienteid) throws ClienteNaoEncontradoException {
         Cliente cliente = buscarClienteService.listarCliente(clienteid);
         return emprestimoMapper.toCollectionModel2(cliente.getEmprestimoList());
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Realiza o lançamento de um Emprestimo. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ApiOperation(value = "Realiza o lançamento de um Emprestimo - Acesso Admin. ")
     public MessageResponse create (@Valid @RequestBody EmprestimoDTOImput emprestimoDTOImput) throws ClienteNaoEncontradoException {
 
         return solicitacaodeEmprestimoService.solicitar(emprestimoDTOImput);
     }
 
 
-    @ApiOperation(value = "Atualiza o cadastro de um Emprestimo. ")
+    @ApiOperation(value = "Atualiza o cadastro de um Emprestimo - Acesso Admin ")
     @PutMapping("/{emprestimoid}")
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public MessageResponse update(@PathVariable Integer emprestimoid,
                                   @Valid @RequestBody EmprestimoDTO emprestimoDTO) throws EmprestimoNaoEncontradoException {
@@ -89,36 +85,32 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{emprestimoId}/finaliza")
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Finaliza um emprestimo. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ApiOperation(value = "Finaliza um emprestimo - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void finalizar(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         finalizarEmprestimoService.finalizar(emprestimoId);
     }
     @PutMapping("/{emprestimoId}/cancela")
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Cancela um emprestimo. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ApiOperation(value = "Cancela um emprestimo - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void cancelar(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         cancelarEmprestimoService.cancelar(emprestimoId);
     }
 
     @PutMapping("/{emprestimoId}/suspende")
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
-    @ApiOperation(value = "Suspende um emprestimo. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ApiOperation(value = "Suspende um emprestimo - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void suspender(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         suspenderEmprestimoService.suspender(emprestimoId);
     }
 
 
-    @ApiOperation(value = "Exclui um emprestimo do cadastro. ")
+    @ApiOperation(value = "Exclui um emprestimo do cadastro - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    //@PreAuthorize("hasRole('ROLES_ADMIN')")
-    @Secured("ROLES_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/{emprestimoid}")
     public void excluirEmprestimo (@PathVariable Integer emprestimoid) throws EmprestimoNaoEncontradoException {
         emprestimoService.delete(emprestimoid);

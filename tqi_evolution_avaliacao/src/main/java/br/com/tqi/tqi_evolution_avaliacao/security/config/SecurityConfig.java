@@ -1,6 +1,7 @@
 package br.com.tqi.tqi_evolution_avaliacao.security.config;
 
 
+import br.com.tqi.tqi_evolution_avaliacao.domain.enums.RolesUser;
 import br.com.tqi.tqi_evolution_avaliacao.security.autentication.JwtAuthenticationEntryPoint;
 import br.com.tqi.tqi_evolution_avaliacao.security.filter.TokenAuthenticationFilter;
 
@@ -27,7 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Log4j2
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
 @SuppressWarnings("java:S5344")
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -69,9 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    /*    PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         log.info("Password encoded {}", passwordEncoder.encode("Shalom@12"));
-  /*      auth.inMemoryAuthentication()
+        auth.inMemoryAuthentication()
                 .withUser("Admin")
                 .password(passwordEncoder.encode("@654321"))
                 .roles("ROLES_USER", "ROLES_ADMIN")
@@ -99,8 +100,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().authorizeRequests()
-                .antMatchers("/api/v1/auth/**","/api/v1/status/**").permitAll()
-                .antMatchers("/v2/api-docs",  "/**/v2/api-docs/**","/swagger-resources/**", "/**/swagger-resources/**","/swagger-ui.html","/**/webjars/**", "/webjars/springfox-swagger-ui/**", "/v1/swagger.json")
+                .antMatchers("/v2/api-docs",  "/**/v2/api-docs/**","/swagger-resources/**", "/**/swagger-resources/**","/swagger-ui.html","/**/webjars/**", "/webjars/springfox-swagger-ui/**", "/v1/swagger.json","/api/v1/auth/**","/api/v1/status/**").permitAll()
+                //.antMatchers("/api/v1/cliente").hasRole("ROLES_ADMIN")
+                //.antMatchers("/api/v1/cliente/**","/api/v1/emprestimo/**").hasRole("ROLES_USER")
+                .and().formLogin()
                     .permitAll();
                 //.anyRequest().authenticated();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

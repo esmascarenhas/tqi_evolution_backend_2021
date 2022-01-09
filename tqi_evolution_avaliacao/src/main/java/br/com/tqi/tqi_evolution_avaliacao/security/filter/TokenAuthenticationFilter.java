@@ -99,31 +99,5 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
 
 
-/*    private void authenticate(String tokenFromHeader) {
-        Integer id = tokenService.getTokenId(tokenFromHeader);
 
-        Optional<UserSecurity> optionalUser = repository.findById(id);
-//extrair o id que é enviado no token, no Subject e após isso faz uma
-//// busca por esse id no repositório.
-
-        if(optionalUser.isPresent()) {
-
-            UserSecurity user = optionalUser.get();
-//passando o userSecurity, null no parâmetro da senha pois não precisamos dela nesse ponto e a lista de perfis
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getPerfis());
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            //objeto que lida com o contexto de segurança da aplicação
-        }
-    }*/
-
-/*    private String getTokenFromHeader(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
-            return null;
-//extrair o token do cabeçalho Authorization e verifica se ele existe e
-// se ele é um token do tipo Bearer
-        }
-
-        return token.substring(7, token.length());
-    }*/
 }

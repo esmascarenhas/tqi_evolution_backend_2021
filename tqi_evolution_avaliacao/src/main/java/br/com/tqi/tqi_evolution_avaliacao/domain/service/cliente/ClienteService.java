@@ -43,9 +43,7 @@ public class ClienteService {
     @Transactional
     public MessageResponse create (ClienteDTOImput clienteDTOImput){
         Cliente novoCliente = clienteMapper.toEntity(clienteDTOImput);
-        novoCliente.getUsuario().setRoles(RolesUser.ROLES_USER);
-       // BCryptPasswordEncoder senha = new BCryptPasswordEncoder(Integer.parseInt(novoCliente.getUsuario().getSenha()));
-        //novoCliente.getUsuario().setSenha(senha);
+        novoCliente.getUsuario().setRoles(RolesUser.ROLE_USER);
         Cliente alunoCadastrado = clienteRepository.save(novoCliente);
         MessageResponse messageResponse = createMessage("Cliente cadastrado com sucesso ", alunoCadastrado.getId(), " - " + alunoCadastrado.getNome());
         return messageResponse;
