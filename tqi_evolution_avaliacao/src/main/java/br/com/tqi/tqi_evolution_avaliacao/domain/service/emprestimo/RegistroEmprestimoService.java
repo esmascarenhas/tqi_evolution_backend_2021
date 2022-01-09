@@ -14,9 +14,9 @@ public class RegistroEmprestimoService {
 
     private BuscarClienteService buscarClienteService;
 
-    @Transactional
+/*    @Transactional
     public Emprestimo registrar (Integer clienteid) throws ClienteNaoEncontradoException {
        Cliente cliente = buscarClienteService.listarCliente(clienteid);
        return cliente.adicionaEmprestimo(clienteid);
-    }
+    }*/
 }

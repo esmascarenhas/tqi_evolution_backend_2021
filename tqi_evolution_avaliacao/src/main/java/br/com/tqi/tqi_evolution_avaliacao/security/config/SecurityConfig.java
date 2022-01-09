@@ -27,7 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Log4j2
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @SuppressWarnings("java:S5344")
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -43,6 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public TokenAuthenticationFilter authenticationTokenFilterBean() throws Exception {
         return new TokenAuthenticationFilter();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
 /*
     @Bean
     public JwtTokenUtil jwtTokenUtilBean() throws Exception {
@@ -51,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 */
 
     @Override
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
@@ -65,7 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         log.info("Password encoded {}", passwordEncoder.encode("Shalom@12"));
-
   /*      auth.inMemoryAuthentication()
                 .withUser("Admin")
                 .password(passwordEncoder.encode("@654321"))
@@ -84,17 +89,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //Autorização
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                //.cors().and()
+                .csrf().disable()
 //                csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests()
-               // .antMatchers("/api/v1/auth/**","/api/v1/status/**","/**/swagger-ui.html","/**/webjars/**", "/**/v2/api-docs/**", "/v2/api-docs", "/**/swagger-resources/**", "/swagger-resources")
+                .exceptionHandling()
+                    .authenticationEntryPoint(unauthorizedHandler)
+                    .and()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and().authorizeRequests()
                 .antMatchers("/api/v1/auth/**","/api/v1/status/**").permitAll()
-                .antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html", "/webjars/springfox-swagger-ui/**", "/api/v1/swagger.json")
-                .permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/v2/api-docs",  "/**/v2/api-docs/**","/swagger-resources/**", "/**/swagger-resources/**","/swagger-ui.html","/**/webjars/**", "/webjars/springfox-swagger-ui/**", "/v1/swagger.json")
+                    .permitAll();
+                //.anyRequest().authenticated();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
 

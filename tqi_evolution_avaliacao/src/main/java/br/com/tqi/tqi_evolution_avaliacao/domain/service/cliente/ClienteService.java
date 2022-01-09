@@ -12,10 +12,9 @@ import br.com.tqi.tqi_evolution_avaliacao.domain.exception.NegocioException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.ClienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -26,6 +25,10 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
 
+
+
+
+
     public List<Cliente> listarCliente(){
         return clienteRepository.findAll();
     }
@@ -35,19 +38,14 @@ public class ClienteService {
                 .orElseThrow(() -> new NegocioException("Cliente não encontrado"));
         return clienteMapper.toModel(cliente);
     }
-/*    @Transactional
-    public MessageResponse create (Cliente cliente){
-        clienteRepository.save(cliente);
-        MessageResponse messageResponse = createMessage("Cliente cadastrado com sucesso ", cliente.getId(), " - " + cliente.getNome());
-        return messageResponse;
-    }*/
-
 
 
     @Transactional
     public MessageResponse create (ClienteDTOImput clienteDTOImput){
         Cliente novoCliente = clienteMapper.toEntity(clienteDTOImput);
         novoCliente.getUsuario().setRoles(RolesUser.ROLES_USER);
+       // BCryptPasswordEncoder senha = new BCryptPasswordEncoder(Integer.parseInt(novoCliente.getUsuario().getSenha()));
+        //novoCliente.getUsuario().setSenha(senha);
         Cliente alunoCadastrado = clienteRepository.save(novoCliente);
         MessageResponse messageResponse = createMessage("Cliente cadastrado com sucesso ", alunoCadastrado.getId(), " - " + alunoCadastrado.getNome());
         return messageResponse;
@@ -65,6 +63,11 @@ public class ClienteService {
 
     }
 
+    @Transactional
+    public void delete (Integer id) throws ClienteNaoEncontradoException {
+        clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
+        clienteRepository.deleteById(id);
+    }
     /*public MessageResponse alterar (Integer id, ClienteDTO clienteDTO) throws ClienteNaoEncontradoException {
         Cliente clienteExiste =clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
 
@@ -85,11 +88,6 @@ public class ClienteService {
         return messageResponse;
 
     }*/
-    @Transactional
-    public void delete (Integer id) throws ClienteNaoEncontradoException {
-        clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
-        clienteRepository.deleteById(id);
-    }
 
     private MessageResponse createMessage (String msm, Integer id, String name){
         return MessageResponse.builder().message(msm + id + name).build();

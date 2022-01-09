@@ -17,12 +17,8 @@ public class EmprestimoDTOImput implements Serializable {
     @Valid
     private ClienteIdImput clienteid;
 
-
     private double valorEmprestimo;
 
-   // @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
-   // @JsonDeserialize(using = LocalDateDeserializer.class)
-   // @JsonSerialize(using = LocalDateSerializer.class)
    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataPrimeiraParcela;
 

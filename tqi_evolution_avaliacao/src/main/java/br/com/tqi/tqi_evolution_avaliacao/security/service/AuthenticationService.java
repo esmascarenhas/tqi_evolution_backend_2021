@@ -30,5 +30,7 @@ public class AuthenticationService implements UserDetailsService {
         }
 // busca no repositório pelo usuário e verificar se ele existe e devolver para o processo de autenticação
         throw new UsernameNotFoundException("Email não encontrado.");
+
     }
+
 }

@@ -7,11 +7,15 @@ import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Cliente;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.ClienteNaoEncontradoException;
+import br.com.tqi.tqi_evolution_avaliacao.domain.exception.NegocioException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.EmprestimoRepository;
 import br.com.tqi.tqi_evolution_avaliacao.domain.service.cliente.BuscarClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Service
 @AllArgsConstructor
@@ -37,6 +41,9 @@ public class SolicitacaodeEmprestimoService {
     public MessageResponse solicitar(EmprestimoDTOImput emprestimoDTOImput) throws ClienteNaoEncontradoException {
         Cliente cliente = buscarClienteService.listarCliente(emprestimoDTOImput.getClienteid().getId());
         Emprestimo novoEmprestimo = emprestimoMapper.toEntity(emprestimoDTOImput);
+        if (novoEmprestimo.getDataPrimeiraParcela().isAfter(LocalDate.now().plus(2, ChronoUnit.MONTHS))) {
+            throw new NegocioException("Data da Primeira Parcela deve ser menor que 60 dias");
+        }
         Emprestimo emprestimoCadastrado = emprestimoRepository.save(novoEmprestimo);
 
         emprestimoCadastrado.setCliente(cliente);

@@ -12,11 +12,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +31,7 @@ import java.util.List;
 @Log4j2
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping("/api")
 public class ClienteController {
 
     private ClienteRepository clienteRepository;
@@ -36,18 +39,22 @@ public class ClienteController {
     private ClienteMapper clienteMapper;
 
 
+
+
+
     @GetMapping(produces = "application/json", value = "/v1/cliente")
-    @PreAuthorize("hasAnyRole('ROLES_ADMIN','ROLES_USER')")
+    //@PreAuthorize("hasAnyRole('ROLES_ADMIN','ROLES_USER')")
+    //@Secured("ROLES_ADMIN")
     @ApiOperation(value = "Retorna a carteira de clientes cadastrados. ")
     public List<ClienteDTO> listAll(){
 
         return clienteMapper.toCollectionModel(clienteService.listarCliente());
     }
     @GetMapping(path = "/v1/cliente/by-id/{id}")
-    @PreAuthorize("hasRole('ROLES_ADMIN')")
+    //@PreAuthorize("hasRole('ROLES_ADMIN')")
+    @Secured("ROLES_ADMIN")
     public ResponseEntity<ClienteDTO> findByIdAuthenticationPrincipal(@PathVariable Integer id,
-                                                                 @AuthenticationPrincipal UserDetails userDetails,
-                                                                 @RequestHeader String Authorization) {
+                                                                 @AuthenticationPrincipal UserDetails userDetails) {
         log.info(userDetails);
         return ResponseEntity.ok(clienteService.buscarCliente(id));
     }
@@ -55,9 +62,9 @@ public class ClienteController {
     @GetMapping("/v1/cliente/{clienteid}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Retorna um cliente específico. ")
-    @PreAuthorize("hasAnyRole('ROLES_ADMIN','ROLES_USER')")
-    public ClienteDTO ClienteById(@PathVariable Integer clienteid,
-                                  @RequestHeader String Authorization) throws ClienteNaoEncontradoException {
+    @Secured("ROLES_ADMIN")
+    //@PreAuthorize("hasAnyRole('ROLES_ADMIN','ROLES_USER')")
+    public ClienteDTO ClienteById(@PathVariable Integer clienteid) throws ClienteNaoEncontradoException {
         return clienteService.buscarCliente(clienteid);
 
     }
@@ -66,11 +73,10 @@ public class ClienteController {
 
     @RequestMapping(value = "/v1/cliente", method = RequestMethod.POST, produces = "application/json" )
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('ROLES_ADMIN')")
+    //@PreAuthorize("hasRole('ROLES_ADMIN')")
+    //@Secured("ROLES_ADMIN")
     @ApiOperation(value = "Realiza o cadastro de novos clientes. ")
-    @ResponseBody
-    public MessageResponse create (@Valid @RequestBody ClienteDTOImput clienteDTOImput,
-                                   @RequestHeader String Authorization){
+    public MessageResponse create (@Valid @RequestBody ClienteDTOImput clienteDTOImput){
        return clienteService.create(clienteDTOImput);
 
     }
@@ -78,20 +84,21 @@ public class ClienteController {
 
     @ApiOperation(value = "Atualiza o cadastro de um cliente. ")
     @PutMapping("/v1/cliente/{clienteid}")
-    @PreAuthorize("hasRole('ROLES_ADMIN')")
+    //@PreAuthorize("hasRole('ROLES_ADMIN')")
+    @Secured("ROLES_ADMIN")
     @ResponseStatus(HttpStatus.OK)
     public MessageResponse update(@PathVariable Integer clienteid,
-                                  @Valid @RequestBody ClienteDTO clienteDTO,
-                                  @RequestHeader String Authorization) throws ClienteNaoEncontradoException {
+                                  @Valid @RequestBody ClienteDTO clienteDTO) throws ClienteNaoEncontradoException {
         return clienteService.update(clienteid,clienteDTO);
     }
 
 
     @ApiOperation(value = "Exclui o cadastro de um cliente. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasRole('ROLES_ADMIN')")
+   //@PreAuthorize("hasRole('ROLES_ADMIN')")
+    @Secured("ROLES_ADMIN")
     @DeleteMapping("/v1/cliente/{clienteid}")
-    public void excluirCliente (Integer clienteid,@RequestHeader String Authorization) throws ClienteNaoEncontradoException {
+    public void excluirCliente (Integer clienteid) throws ClienteNaoEncontradoException {
         clienteService.delete(clienteid);
     }
 

@@ -10,8 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.tqi.tqi_evolution_avaliacao.security.service.AuthenticationService;
 import br.com.tqi.tqi_evolution_avaliacao.security.utils.SecurityConstants;
 import org.apache.logging.log4j.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,11 +42,14 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private SecurityConstants constants;
 
+    private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain)
             throws ServletException, IOException {
+
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
 
         final HttpServletResponse httpResponse = (HttpServletResponse) response;
@@ -56,7 +62,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 httpRequest.getRequestURI().contains("v2/api-docs") ||
                 httpRequest.getRequestURI().contains("/public/") ||
                 httpRequest.getRequestURI().contains("/api/v1/status") ||
+                httpRequest.getRequestURI().contains("/swagger-ui/") ||
                 httpRequest.getRequestURI().contains("swagger") ||
+                httpRequest.getRequestURI().contains("/favicon.ico") ||
                 httpRequest.getMethod().equalsIgnoreCase("OPTIONS")
         ) {
             chain.doFilter(request, response);
@@ -88,6 +96,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
         chain.doFilter(request, response);
     }
+
+
 
 /*    private void authenticate(String tokenFromHeader) {
         Integer id = tokenService.getTokenId(tokenFromHeader);

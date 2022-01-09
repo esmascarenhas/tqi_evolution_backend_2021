@@ -26,17 +26,6 @@ public class EmprestimoService {
     }
 
 
-
-/*    @Transactional
-    public MessageResponse create (EmprestimoDTOImput emprestimoDTOImput){
-        Emprestimo novoEmprestimo = emprestimoMapper.toEntity(emprestimoDTOImput);
-        Emprestimo emprestimoCadastrado = emprestimoRepository.save(novoEmprestimo);
-        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getCodigoEmprestimo(), " - " + emprestimoCadastrado.getCliente().getNome());
-        return messageResponse;
-    }*/
-
-
-
     public MessageResponse update (Integer id, EmprestimoDTO emprestimoDTO) throws EmprestimoNaoEncontradoException {
         emprestimoRepository.findById(id).orElseThrow(() -> new EmprestimoNaoEncontradoException(id));
         Emprestimo emprestimoAtualizado = emprestimoMapper.toEntity2(emprestimoDTO);

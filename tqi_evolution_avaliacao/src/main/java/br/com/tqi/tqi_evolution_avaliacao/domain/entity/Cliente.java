@@ -1,13 +1,12 @@
 package br.com.tqi.tqi_evolution_avaliacao.domain.entity;
 
-import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -53,7 +52,7 @@ public class Cliente implements Serializable {
     @Embedded
     private Endereco endereco;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private UserSecurity usuario;
 
     @NotEmpty
@@ -65,6 +64,7 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimoList = new ArrayList<>();
 
+/*
     public Emprestimo adicionaEmprestimo (Integer clienteid){
         Emprestimo emprestimo =new Emprestimo();
         emprestimo.getCodigoEmprestimo();
@@ -74,6 +74,7 @@ public class Cliente implements Serializable {
         emprestimo.setStatus(StatusEmprestimo.ATIVO);
         return emprestimo;
     }
+*/
 
 
 }
