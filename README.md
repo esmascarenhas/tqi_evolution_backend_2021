@@ -19,6 +19,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 - [x] Banco de Dados MySQL
 - [x] Spring initializr 
 
+<ul>
 <h2> ✨ Desafio</h2>
 
 🔸 <strong> Visão geral:  Sistema de Análise de Crédito para uma Empresa de Emprestimos </strong>
@@ -37,54 +38,97 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  Autenticação será realizada por e-mail e senha.<br>
 	  Classe e repositorio de Usuários <br>
 	  Controlador para autenticação<br>
+</ul>
 	  
 	  
-<h2> 👣 Solução</h2>
+<ul>
+	<h2> 👣 Solução</h2>
 	  
 	  
 	  
 	
-🔸 <strong> Security </strong><br>
-	  Utilização do JWT para geração e validação de token para autenticação.<br>
-	  Spring Security para solução de segurança<br>
-	  Autenticação Inmemory e via BAnco de dados<br>
+
+	  
+	  
+   <p><strong>Na Homepage do Swagger será apresentado quatro controladores:<br>
+	
+	🔻 Controle de Auteenticação - realiza geração de token para autenticação na API;<br>
+	🔻 Cliente Controller - Contrala os serviços de cadastro, consulta, alteração e exclusão do Banco de dados;<br>
+	🔻 Emprestimo Controller - Realiza solicitação de emprestimo, acompanhamento, detalhe, alteração e exclusão;<br>
+	🔻 Status Aplicação - Testa se aplicação está funcionando.
+	
     
-🔸 <strong> Testes </strong><br>
-	  Utilização do JUnit, REST-Assured e mockmvc para testes unitários e integração.<br>
-	  Cobertura de teste das classe Controller<br>
-	  Cobertura de testes das classes de serviço e repository<br>
+
 	  
 	  
 	  
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger1.png?raw=true)
+	 
+	
+🔸 <strong> Security </strong><br>
+	  Utilização do JWT para geração e validação de token para autenticação.<br>
+	  Spring Security para solução de segurança<br>
+	  Autenticação Inmemory e via Banco de dados<br>
 	  
-	  
+   <p><strong>No Controlador de acesso:<br>
+
+	
+	🔻 Realiza o metodo post, utilizando o email e a senha do usuário;<br>
+	🔻 Cadastrado, no Banco, dois usuários para teste:<br> 
+	       Perfil ADMIN: email (admin@email.com) senha (654321)<br>
+	       Perfil User: email (usuario@email.com) senha (123456)<br>
+	🔻 Executando o metodo post, recebe o token e cadastra no autorizador (Cadeaddo no canto superior direito);<br>
+	🔻 Pronto! Você está autorizado para utilizar os serviços que possui autenticação liberada(conforme consta na descrição de cada metodo.<br>
+	
 
 
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem1.png?raw=true)
 
 
+🔸 <strong> Controlador de cliente - Composto dos seguintes metodos: </strong>
+<br>
+	   🔹 Método GET (sem parametro) - Consulta a base de clientes na Empresa;<br>
+	   🔹 Método GET (com id do cliente) - Consulta o cadastro de um cliente na Empresa;<br>
+	   🔹 Método Post (sem parametro) - Realiza o cadastro de clientes na Empresa;<br>
+	   🔹 Método Put (com id do cliente) - Altera o cadastro de clientes na Empresa;<br>
+	   🔹 Método Delete (com id do cliente) - Exclui um cliente do cadastro na Empresa;<br>
+<br>
+	
 
+	   
 
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger3.png?raw=true)
 
 
+	   
+🔸 <strong> Controlador de Emprestimo - Composto dos seguintes metodos: </strong>
+<br>
+	   🔹 Método GET (sem parametro) - Consulta os Emprestimos dos clientes;<br>
+	   🔹 Método GET (com id do cliente) - Acompanhamento dos Emprestimos de um cliente;<br>
+	   🔹 Método Post (sem parametro) - Realiza o cadastro de Emprestimo para o cliente;<br>
+	   🔹 Método Put (com id do cliente) - Altera informações do Emprestimo do cliente;<br>
+	   🔹 Método Delete (com id do cliente) - Exclui um emprestimo do sistema;<br>
+<br>
 
 
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem2.png?raw=true)
 
 
-
-
+	   
+</ul>
+🔸 <strong> Testes </strong><br>
+	  Utilização do JUnit, REST-Assured e mockmvc para testes unitários e integração.<br>
+  	  Cobertura de teste das classe Controller<br>
+  	  Cobertura de testes das classes de serviço e repository<br>
 	
 	
 <h2> 🤝 Fontes de Estudo e contribuições </h2>
 
-Bootcamp da [DIO](https://digitalinnovation.one/).
-Desenvolvimento de API com a [AlgaWorks](https://www.youtube.com/c/AlgaWorksCursosOnline).
-Token com JWT e Spring Security [Expertos Tech](https://www.youtube.com/results?search_query=expertos+tech).
-Spring Boot e Spring Securit com [DevDojo](https://www.youtube.com/c/DevDojoBrasil).
-Testes Unitários e integração com [Julio de Lima](https://www.youtube.com/c/JuliodeLimas).
+Bootcamp da [DIO](https://digitalinnovation.one/).<br>
+Desenvolvimento de API com a [AlgaWorks](https://www.youtube.com/c/AlgaWorksCursosOnline).<br>
+Token com JWT e Spring Security [Expertos Tech](https://www.youtube.com/results?search_query=expertos+tech).<br>
+Spring Boot e Spring Securit com [DevDojo](https://www.youtube.com/c/DevDojoBrasil).<br>
+Testes Unitários e integração com [Julio de Lima](https://www.youtube.com/c/JuliodeLimas).<br>
 
 
 
