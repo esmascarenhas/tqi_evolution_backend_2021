@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 public class UserDTOResumo {
 
 
-
+    private Integer id;
     private String email;
     private String senha;
     private RolesUser roles;

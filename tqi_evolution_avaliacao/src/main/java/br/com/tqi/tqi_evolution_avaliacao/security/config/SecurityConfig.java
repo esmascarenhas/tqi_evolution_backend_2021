@@ -50,12 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         return new BCryptPasswordEncoder();
     }
-/*
-    @Bean
-    public JwtTokenUtil jwtTokenUtilBean() throws Exception {
-        return new JwtTokenUtil();
-    }
-*/
+
 
     @Override
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -101,22 +96,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().authorizeRequests()
                 .antMatchers("/v2/api-docs",  "/**/v2/api-docs/**","/swagger-resources/**", "/**/swagger-resources/**","/swagger-ui.html","/**/webjars/**", "/webjars/springfox-swagger-ui/**", "/v1/swagger.json","/api/v1/auth/**","/api/v1/status/**").permitAll()
-                //.antMatchers("/api/v1/cliente").hasRole("ROLES_ADMIN")
-                //.antMatchers("/api/v1/cliente/**","/api/v1/emprestimo/**").hasRole("ROLES_USER")
                 .and().formLogin()
                     .permitAll();
-                //.anyRequest().authenticated();
+
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
 
 
-
-       /* http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable() //habilitar em produção (ataque na web)
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //não manterá no servidor
-                .and() //a configuração de filtro deve ser antes do filtro do Spring Security
-                .addFilterBefore(new TokenAuthenticationFilter(tokenService,repository), UsernamePasswordAuthenticationFilter.class) ;*/
     }
 }

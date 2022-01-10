@@ -16,6 +16,8 @@ public class EmprestimoDTOImput implements Serializable {
 
     @Valid
     private ClienteIdImput clienteid;
+    @Valid
+    private UsuarioIdImput usuarioid;
 
     private double valorEmprestimo;
 

@@ -26,16 +26,6 @@ public class SolicitacaodeEmprestimoService {
     private EmprestimoMapper emprestimoMapper;
     private BuscarClienteService buscarClienteService;
 
-/*    @Transactional
-    public Emprestimo solicitar(Emprestimo emprestimo){
-        Cliente cliente = clienteService.buscarCliente(emprestimo.getCliente().getId());
-
-        emprestimo.setCliente(cliente);
-        emprestimo.setStatus(StatusEmprestimo.ATIVO);
-
-        return emprestimoRepository.save(emprestimo);
-
-    }*/
 
     @Transactional
     public MessageResponse solicitar(EmprestimoDTOImput emprestimoDTOImput) throws ClienteNaoEncontradoException {
@@ -49,18 +39,12 @@ public class SolicitacaodeEmprestimoService {
         emprestimoCadastrado.setCliente(cliente);
         emprestimoCadastrado.setStatus(StatusEmprestimo.ATIVO);
 
-        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getCodigoEmprestimo(), " - " + emprestimoCadastrado.getCliente().getNome());
+        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso - Código do Emprestimo: ", emprestimoCadastrado.getCodigoEmprestimo(), " - Cliente: " + emprestimoCadastrado.getCliente().getNome());
         return messageResponse;
 
 
     }
- /*   @Transactional
-    public MessageResponse create (EmprestimoDTOImput emprestimoDTOImput){
-        Emprestimo novoEmprestimo = emprestimoMapper.toEntity(emprestimoDTOImput);
-        Emprestimo emprestimoCadastrado = emprestimoRepository.save(novoEmprestimo);
-        MessageResponse messageResponse = createMessage("Emprestimo cadastrado com sucesso ", emprestimoCadastrado.getId(), " - " + emprestimoCadastrado.getCliente().getNome());
-        return messageResponse;
-    }*/
+
  private MessageResponse createMessage (String msm, Integer id, String name){
      return MessageResponse.builder().message(msm + id + name).build();
 

@@ -32,8 +32,8 @@ public class EmprestimoService {
         Emprestimo emprestimoSalvo = emprestimoRepository.save(emprestimoAtualizado);
 
         MessageResponse messageResponse =
-                createMessage("Emprestimo atualizado com sucesso ",
-                emprestimoSalvo.getCodigoEmprestimo()," - " + emprestimoSalvo.getCliente().getNome());
+                createMessage("Emprestimo atualizado com sucesso - código: ",
+                emprestimoSalvo.getCodigoEmprestimo()," - Cliente: " + emprestimoSalvo.getCliente().getNome());
         return messageResponse;
 
     }

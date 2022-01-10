@@ -24,8 +24,6 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             throws IOException {
         logger.error("Responding with unauthorized error. Message - {}", authException.getMessage());
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
- /*       response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                "Acesso negado. Você deve estar autenticado no sistema para acessar a URL solicitada.");
-*/
+
     }
 }

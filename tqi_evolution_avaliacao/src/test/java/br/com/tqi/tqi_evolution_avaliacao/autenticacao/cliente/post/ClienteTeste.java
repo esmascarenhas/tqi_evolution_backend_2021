@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.cliente;
+package br.com.tqi.tqi_evolution_avaliacao.autenticacao.cliente.post;
 
 
 import io.restassured.http.ContentType;
@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static  org.hamcrest.Matchers.*;
 
 
 public class ClienteTeste {
@@ -15,7 +13,7 @@ public class ClienteTeste {
 
     @Test
     @DisplayName("Teste de acesso e inclusão de cliente")
-    public void testeDadoUmAdminQuandoCadastroClienteEntaoObbtenhoStatusCode201(){
+    public void testeDadoUmAdminQuandoCadastroClienteEntaoObtenhoStatusCode201(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -44,25 +42,24 @@ public class ClienteTeste {
         given()
                 .headers("Authorization",token)
                 .body("{\n" +
-                        "  \"cpf\": \"string\",\n" +
+                        "  \"cpf\": \"928373795-49\",\n" +
                         "  \"endereco\": {\n" +
-                        "    \"bairro\": \"string\",\n" +
-                        "    \"cep\": \"string\",\n" +
-                        "    \"cidade\": \"string\",\n" +
-                        "    \"complemento\": \"string\",\n" +
-                        "    \"estado\": \"string\",\n" +
-                        "    \"logradouro\": \"string\",\n" +
-                        "    \"numero\": 0,\n" +
-                        "    \"pais\": \"string\"\n" +
+                        "    \"bairro\": \"Cabula\",\n" +
+                        "    \"cep\": \"41150-000\",\n" +
+                        "    \"cidade\": \"Salvador\",\n" +
+                        "    \"complemento\": \"105\",\n" +
+                        "    \"estado\": \"Bahia\",\n" +
+                        "    \"logradouro\": \"Av. Sileira Martins\",\n" +
+                        "    \"numero\": 95,\n" +
+                        "    \"pais\": \"Brasil\"\n" +
                         "  },\n" +
-                        "  \"nome\": \"string\",\n" +
-                        "  \"renda\": 0,\n" +
-                        "  \"rg\": \"string\",\n" +
-                        "  \"usuario\":{\n" +
-                        "    \"email\" : \"string\",\n" +
-                        "    \"senha\": \"string\"\n" +
-                        "}\n" +
-                        "  \n" +
+                        "  \"nome\": \"Tiago\",\n" +
+                        "  \"renda\": 4000,\n" +
+                        "  \"rg\": \"05207460-90\",\n" +
+                        "  \"usuario\": {\n" +
+                        "    \"email\": \"esm@email.com\",\n" +
+                        "    \"senha\": \"@654321\"\n" +
+                        "  }\n" +
                         "}")
                 .contentType(ContentType.JSON)
                 .when()

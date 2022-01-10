@@ -30,28 +30,7 @@ public class ConsultaDeEmprestimoService {
         return emprestimoMapper.toModel(emprestimo);
 
     }
-/*
-    public List<EmprestimoDTO> consultaEmprestimo(Integer clienteid) throws ClienteNaoEncontradoException {
-        Cliente cliente = clienteRepository.findById(clienteid)
-                .orElseThrow(() -> new ClienteNaoEncontradoException(clienteid));
 
-        Emprestimo emp = new Emprestimo();
-        List<Emprestimo> emprestimo = emp.getCliente().getId();
-        emprestimo.add(new Emprestimo());
-        Emprestimo emp = emprestimoRepository.findByClienteid(clienteid);
-        Emprestimo emprestimo1 = new Emprestimo();
-        emprestimo1.getCliente().getNome();
-        emprestimo1.getId();
-
-
-        emprestimo.add(emp.getId());
-        emprestimo.getCliente();
-        emprestimo.getValorEmprestimo();
-        emprestimo.getQuantidadeParcelas();
-        return emprestimoMapper.toCollectionModel(emprestimo1);
-
-    }
-*/
 
 
 }

@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface EmprestimoRepository extends JpaRepository<Emprestimo,Integer> {
 
-/*    Emprestimo findByClienteid(Integer clienteid);*/
+
 }

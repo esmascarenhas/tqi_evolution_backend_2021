@@ -47,19 +47,13 @@ public class ClienteController {
 
     @GetMapping(produces = "application/json", value = "/v1/cliente")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Retorna a carteira de clientes cadastrados - Acesso Admin. ")
     public List<ClienteDTO> listAll(){
 
         return clienteMapper.toCollectionModel(clienteService.listarCliente());
     }
-/*    @GetMapping(path = "/v1/cliente/by-id/{id}")
-    @ApiOperation(value = "Consulta o perfil do usuário - Acesso Admin e Usuário. ")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
-    public ResponseEntity<ClienteDTO> findByIdAuthenticationPrincipal(@PathVariable Integer id,
-                                                                 @AuthenticationPrincipal UserDetails userDetails) {
-        log.info(userDetails);
-        return ResponseEntity.ok(clienteService.buscarCliente(id));
-    }*/
+
 
     @GetMapping("/v1/cliente/{clienteid}")
     @ResponseStatus(HttpStatus.OK)
@@ -100,5 +94,14 @@ public class ClienteController {
     public void excluirCliente (Integer clienteid) throws ClienteNaoEncontradoException {
         clienteService.delete(clienteid);
     }
+
+    /*    @GetMapping(path = "/v1/cliente/by-id/{id}")
+    @ApiOperation(value = "Consulta o perfil do usuário - Acesso Admin e Usuário. ")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
+    public ResponseEntity<ClienteDTO> findByIdAuthenticationPrincipal(@PathVariable Integer id,
+                                                                 @AuthenticationPrincipal UserDetails userDetails) {
+        log.info(userDetails);
+        return ResponseEntity.ok(clienteService.buscarCliente(id));
+    }*/
 
 }

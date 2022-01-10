@@ -12,14 +12,8 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class UserDTOImput  {
 
-
-
     private String email;
     private String senha;
-
-
-
-
 
     public UserDTOImput() {
     }

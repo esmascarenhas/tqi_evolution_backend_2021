@@ -2,6 +2,7 @@ package br.com.tqi.tqi_evolution_avaliacao.domain.entity;
 
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.RolesUser;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -13,9 +14,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -23,18 +22,28 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "usuario")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UserSecurity  implements Serializable {
 
 
     private static final long serialVersionUID = 4804914140206993767L;
 
+    @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ApiModelProperty(value = "Email do cliente")
     private String email;
+
     private String senha;
     private RolesUser roles;
 
+    @OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
+    private List<Emprestimo> emprestimoLista = new ArrayList<>();
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

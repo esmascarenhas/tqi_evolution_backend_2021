@@ -33,12 +33,12 @@ public class EmprestimoMapper {
     }
     public EmprestimoResumoDTO toModel2 (Emprestimo emprestimo){
         EmprestimoResumoDTO emprestimoResumoDTO = modelMapper.map(emprestimo,EmprestimoResumoDTO.class);
-        //emprestimoResumoDTO.add(linkTo(methodOn(EmprestimoController.class).listarEmprestimo(emprestimo.getCodigoEmprestimo())).withRel("Acompanhamento das solicitações de empréstimo"));
+
         return emprestimoResumoDTO;
     }
     public DetalheEmprestimo toModel3 (Emprestimo emprestimo){
         DetalheEmprestimo detalheEmprestimo = modelMapper.map(emprestimo,DetalheEmprestimo.class);
-       // detalheEmprestimo.add(linkTo(methodOn(EmprestimoController.class).detalheById(emprestimoid)).withRel("Detalha um Emprestimo do cliente"));
+
         return detalheEmprestimo;
     }
 

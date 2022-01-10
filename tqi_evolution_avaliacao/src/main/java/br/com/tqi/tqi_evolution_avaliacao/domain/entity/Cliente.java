@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
     @Embedded
     private Endereco endereco;
 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade=CascadeType.PERSIST)//cascade=CascadeType.PERSIST
     private UserSecurity usuario;
 
     @NotEmpty
@@ -64,17 +64,6 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimoList = new ArrayList<>();
 
-/*
-    public Emprestimo adicionaEmprestimo (Integer clienteid){
-        Emprestimo emprestimo =new Emprestimo();
-        emprestimo.getCodigoEmprestimo();
-        emprestimo.getCliente().getNome();
-        emprestimo.getValorEmprestimo();
-        emprestimo.getQuantidadeParcelas();
-        emprestimo.setStatus(StatusEmprestimo.ATIVO);
-        return emprestimo;
-    }
-*/
 
 
 }

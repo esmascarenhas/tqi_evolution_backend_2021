@@ -7,6 +7,7 @@ import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.EmprestimoResumoDTO;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.EmprestimoDTOImput;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.response.MessageResponse;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Cliente;
+import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Emprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.ClienteNaoEncontradoException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.EmprestimoNaoEncontradoException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.repository.EmprestimoRepository;
@@ -66,6 +67,7 @@ public class EmprestimoController {
         return emprestimoMapper.toCollectionModel2(cliente.getEmprestimoList());
     }
     @PostMapping
+    @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ApiOperation(value = "Realiza o lançamento de um Emprestimo - Acesso Admin. ")
@@ -87,6 +89,7 @@ public class EmprestimoController {
     @PutMapping("/{emprestimoId}/finaliza")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ApiOperation(value = "Finaliza um emprestimo - Acesso Admin. ")
+    @ResponseBody()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void finalizar(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         finalizarEmprestimoService.finalizar(emprestimoId);
@@ -95,6 +98,7 @@ public class EmprestimoController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ApiOperation(value = "Cancela um emprestimo - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
     public void cancelar(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         cancelarEmprestimoService.cancelar(emprestimoId);
     }
@@ -103,6 +107,7 @@ public class EmprestimoController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ApiOperation(value = "Suspende um emprestimo - Acesso Admin. ")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
     public void suspender(@PathVariable Integer emprestimoId) throws EmprestimoNaoEncontradoException {
         suspenderEmprestimoService.suspender(emprestimoId);
     }

@@ -26,9 +26,6 @@ public class ClienteService {
     private final ClienteMapper clienteMapper;
 
 
-
-
-
     public List<Cliente> listarCliente(){
         return clienteRepository.findAll();
     }
@@ -66,26 +63,7 @@ public class ClienteService {
         clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
         clienteRepository.deleteById(id);
     }
-    /*public MessageResponse alterar (Integer id, ClienteDTO clienteDTO) throws ClienteNaoEncontradoException {
-        Cliente clienteExiste =clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
 
-        clienteExiste.setId(clienteDTO.getId());
-        clienteExiste.setCpf(clienteDTO.getCpf());
-        clienteExiste.setEmail(clienteDTO.getEmail());
-        clienteExiste.setEndereco(clienteDTO.getEndereco().getBairro().);
-        clienteExiste.setRenda(clienteDTO.getRenda());
-        clienteExiste.setNome(clienteDTO.getNome());
-        clienteExiste.setRg(clienteDTO.getRg());
-        clienteExiste.setSenha(clienteDTO.getSenha());
-
-
-        Cliente clienteAtualizado = clienteMapper.toEntity2(clienteDTO);
-        Cliente clientesalvo = clienteRepository.save(clienteAtualizado);
-
-        MessageResponse messageResponse = createMessage("Cliente atualizado com sucesso ", clientesalvo.getId()," - " + clientesalvo.getNome());
-        return messageResponse;
-
-    }*/
 
     private MessageResponse createMessage (String msm, Integer id, String name){
         return MessageResponse.builder().message(msm + id + name).build();

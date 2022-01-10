@@ -34,11 +34,15 @@ CREATE TABLE emprestimo ( id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
  valor_emprestimo DOUBLE UNSIGNED NULL,
  quant_parcelas INT NOT NULL,
  data_primeira_parcela datetime NULL,
+ data_finalizacao datetime,
  status varchar(20) not null,
  cliente_id INT NOT NULL,
+ usuario_id int NOT NULL;
  PRIMARY KEY(id) );
 
  alter table emprestimo add constraint fk_emprestimo_cliente
  foreign key (cliente_id) references cliente (id);
+   alter table emprestimo add constraint fk_emprestimo_usuario
+     foreign key (usuario_id) references usuario (id);
 
 

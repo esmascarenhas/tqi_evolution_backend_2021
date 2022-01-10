@@ -7,9 +7,6 @@ import lombok.Setter;
 @Setter
 public class ClienteDetalhaEmprestimo {
 
-
-
-    private String email;
-    private double renda;
+     private double renda;
 
 }

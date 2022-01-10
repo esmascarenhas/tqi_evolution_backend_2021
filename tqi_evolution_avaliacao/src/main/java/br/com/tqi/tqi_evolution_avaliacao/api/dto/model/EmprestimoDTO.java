@@ -14,11 +14,14 @@ import java.time.LocalDate;
 @Setter
 public class EmprestimoDTO extends RepresentationModel<EmprestimoDTO> implements Serializable {
 
+    private static final long serialVersionUID = 4638746616921813995L;
+
     private Integer codigoEmprestimo;
     private double valorEmprestimo;
     private LocalDate dataPrimeiraParcela;
     private int quantidadeParcelas;
     private StatusEmprestimo status;
     private ClienteResumoModel cliente;
+
 
 }

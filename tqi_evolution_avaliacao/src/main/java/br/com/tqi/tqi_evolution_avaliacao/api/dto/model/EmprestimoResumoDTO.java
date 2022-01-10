@@ -1,5 +1,6 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model;
 
+import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.UsuarioIdImput;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.resumo.ClienteEmprestimoModel;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import lombok.Getter;
@@ -19,5 +20,6 @@ public class EmprestimoResumoDTO extends RepresentationModel<EmprestimoResumoDTO
     private int quantidadeParcelas;
     private StatusEmprestimo status;
     private ClienteEmprestimoModel cliente;
+    private UsuarioIdImput usuario;
 
 }

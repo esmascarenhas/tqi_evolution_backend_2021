@@ -24,15 +24,6 @@ public class JwtTokenUtil {
 
     private SecurityConstants constants;
 
-/*    @Autowired
-    @Value("${jwt.secret}")
-    private String secret;
-    @Autowired
-    @Value("${jwt.expiration}")
-    private Long expiration;*/
-
-
-
     /*    *
      * Obtém o username (email) contido no token JWT.
      *

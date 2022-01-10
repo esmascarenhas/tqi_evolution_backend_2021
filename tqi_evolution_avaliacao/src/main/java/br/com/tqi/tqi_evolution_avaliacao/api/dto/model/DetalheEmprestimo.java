@@ -1,6 +1,7 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model;
 
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.resumo.ClienteDetalhaEmprestimo;
+import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.resumo.UsuarioDetalhaEmprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,4 +22,5 @@ public class DetalheEmprestimo extends RepresentationModel<EmprestimoResumoDTO> 
     private int quantidadeParcelas;
     private StatusEmprestimo status;
     private ClienteDetalhaEmprestimo cliente;
+    private UsuarioDetalhaEmprestimo email;
 }

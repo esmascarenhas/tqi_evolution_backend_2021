@@ -1,10 +1,9 @@
-package br.com.tqi.tqi_evolution_avaliacao.emprestimo;
+package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static  org.hamcrest.Matchers.*;
+
 public class EmprestimoTeste {
 
 
