@@ -70,17 +70,17 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  Spring Security para solução de segurança<br>
 	  Autenticação Inmemory e via Banco de dados<br>
 	  
-   <p><strong>No Controlador de acesso:<br>
-
+  <p><strong>🔗No Controlador de acesso:<br>
+<br>
 	
-	🔻 Realiza o metodo post, utilizando o email e a senha do usuário;<br>
-	🔻 Cadastrado, no Banco, dois usuários para teste:<br> 
-	       Perfil ADMIN: email (admin@email.com) senha (654321)<br>
-	       Perfil User: email (usuario@email.com) senha (123456)<br>
-	🔻 Executando o metodo post, recebe o token e cadastra no autorizador (Cadeaddo no canto superior direito);<br>
-	🔻 Pronto! Você está autorizado para utilizar os serviços que possui autenticação liberada(conforme consta na descrição de cada metodo.<br>
+	🔻 Realiza o metodo post, utilizando o email e a senha do usuário;
+	🔻 Cadastrado, no Banco, dois usuários para teste:
+	       Perfil ADMIN: email (admin@email.com) senha (654321)
+	       Perfil User: email (usuario@email.com) senha (123456)
+	🔻 Executando o metodo post, recebe o token e cadastra no autorizador (Cadeaddo no canto superior direito);
+	🔻 Pronto! Você está autorizado para utilizar os serviços que possui autenticação liberada(conforme consta na descrição de cada metodo.
 	
-
+</br>
 
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem1.png?raw=true)
 
@@ -92,10 +92,11 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	   🔹 Método Post (sem parametro) - Realiza o cadastro de clientes na Empresa;<br>
 	   🔹 Método Put (com id do cliente) - Altera o cadastro de clientes na Empresa;<br>
 	   🔹 Método Delete (com id do cliente) - Exclui um cliente do cadastro na Empresa;<br>
-<br>
+</br>
 	
 
-	   
+<br>
+<br>
 
 ![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger3.png?raw=true)
 
