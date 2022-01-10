@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
+package br.com.tqi.tqi_evolution_avaliacao.violacaoSeguranca.emprestimo.put;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
@@ -6,12 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 
 import static io.restassured.RestAssured.*;
 
-public class AlteraEmprestimoTeste {
+public class NaoSuspendeEmprestimoTeste {
 
 
     @Test
-    @DisplayName("TesteSucessoQuandoAlteraEmprestimo" )
-    public void testeDadoUmAdminQuandoAlteraEmprestimoEntaoObbtenhoStatusCode200(){
+    @DisplayName("TesteAcessoNegadoQuandoSuspendeEmprestimo" )
+    public void testeDadoUmAdminQuandoSuspendeEmprestimoEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -21,8 +21,8 @@ public class AlteraEmprestimoTeste {
 
         String token = given()
                 .body("{\n" +
-                        "  \"email\": \"admin@email.com\",\n" +
-                        "  \"senha\": \"654321\"\n" +
+                        "  \"email\": \"usuario@email.com\",\n" +
+                        "  \"senha\": \"123456\"\n" +
                         "}")
                 .contentType(ContentType.JSON)
                 .when()
@@ -35,25 +35,18 @@ public class AlteraEmprestimoTeste {
 
         System.out.println(token);
 
-        //Altera Emprestimo
+        //Não Suspende de Emprestimo
 
         given()
                 .headers("Authorization",token)
-                .body("{\n" +
-                        "  \"clienteid\": {\n" +
-                        "    \"id\": 1\n" +
-                        "  },\n" +
-                        "  \"dataPrimeiraParcela\": \"2022-03-04\",\n" +
-                        "  \"quantidadeParcelas\": 10,\n" +
-                        "  \"valorEmprestimo\": 50000\n" +
-                        "}")
+                .queryParam("1")
                 .contentType(ContentType.JSON)
                 .when()
-                .put("/v1/emprestimo/{emprestimoid}")
+                .put("/v1/emprestimo/{emprestimoId}/suspende")
                 .then()
                 .log().all()
                 .assertThat()
-                .statusCode(200);
+                .statusCode(403);
 
     }
 }

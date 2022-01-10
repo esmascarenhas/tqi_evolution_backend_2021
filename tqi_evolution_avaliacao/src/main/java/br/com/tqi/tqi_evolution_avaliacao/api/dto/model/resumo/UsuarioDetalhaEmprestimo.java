@@ -7,5 +7,6 @@ import lombok.*;
 @Builder
 public class UsuarioDetalhaEmprestimo {
 
+    private Integer id;
     private String email;
 }

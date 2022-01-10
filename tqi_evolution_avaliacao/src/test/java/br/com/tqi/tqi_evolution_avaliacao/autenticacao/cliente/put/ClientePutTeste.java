@@ -12,7 +12,7 @@ public class ClientePutTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso e inclusão de cliente")
+    @DisplayName("TesteSucessoQuandoAlteraCadastroDeCliente")
     public void testeDadoUmUsuarioQuandoAtualizoClienteEntaoObtenhoStatusCode200(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";

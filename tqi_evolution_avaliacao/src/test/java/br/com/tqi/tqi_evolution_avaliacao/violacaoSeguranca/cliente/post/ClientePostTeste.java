@@ -12,8 +12,8 @@ public class ClientePostTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso e inclusão de cliente")
-    public void testeDadoUmUsuarioNaoCadastradoQuandoCadastroClienteEntaoObbtenhoStatusCode403(){
+    @DisplayName("TesteAcessoNegadoQuandoIncluiCliente")
+    public void testeDadoUmUsuarioNaoCadastradoQuandoCadastroClienteEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;

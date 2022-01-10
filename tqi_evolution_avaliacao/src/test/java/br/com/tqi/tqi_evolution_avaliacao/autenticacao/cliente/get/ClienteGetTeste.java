@@ -12,7 +12,7 @@ public class ClienteGetTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso a lista de cliente")
+    @DisplayName("TesteSucessoAoListarCliente")
     public void testeDadoUmAdminQuandolistaClienteEntaoObtenhoStatusCode200(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
@@ -43,7 +43,7 @@ public class ClienteGetTeste {
                 .headers("Authorization",token)
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/v1/cliente")
+                .get("/v1/cliente/cliente")
                 .then()
                 .log().all()
                 .assertThat()

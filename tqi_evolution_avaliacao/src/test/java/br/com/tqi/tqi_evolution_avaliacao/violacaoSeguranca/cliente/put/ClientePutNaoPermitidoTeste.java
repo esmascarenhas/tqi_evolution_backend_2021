@@ -12,7 +12,7 @@ public class ClientePutNaoPermitidoTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso e inclusão de cliente")
+    @DisplayName("TesteAcessoNegadoQuandoAlteraCliente")
     public void testeDadoUmUsuarioNaoCadastradoQuandoAtualizpClienteEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
@@ -64,7 +64,7 @@ public class ClientePutNaoPermitidoTeste {
                 .contentType(ContentType.JSON)
                 .queryParam("1")
                 .when()
-                .put("/v1/cliente/{clienteid}")
+                .put("/api/v1/cliente/{clienteid}")
                 .then()
                 .log().all()
                 .assertThat()

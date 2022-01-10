@@ -12,8 +12,8 @@ public class ClienteNaoDeletaTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso a lista de cliente")
-    public void testeDadoUmUsuarioQuandoExcluiClienteEntaoObbtenhoStatusCode403(){
+    @DisplayName("TesteAcessoNegadoQuandoDeletaCliente")
+    public void testeDadoUmUsuarioQuandoExcluiClienteEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;

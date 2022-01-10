@@ -12,8 +12,8 @@ public class ClienteGetNaoUsuarioTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso a lista de cliente")
-    public void testeDadoUmUsuarioNaoCadastradoQuandolistaClienteEntaoObbtenhoStatusCode403(){
+    @DisplayName("TesteAcessoNegadoQuandoListaCliente")
+    public void testeDadoUmUsuarioNaoCadastradoQuandolistaClienteEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -37,7 +37,7 @@ public class ClienteGetNaoUsuarioTeste {
 
         System.out.println(token);
 
-        //Cadastro de Cliente
+        //Lista de Cliente
 
         given()
                 .headers("Authorization",token)

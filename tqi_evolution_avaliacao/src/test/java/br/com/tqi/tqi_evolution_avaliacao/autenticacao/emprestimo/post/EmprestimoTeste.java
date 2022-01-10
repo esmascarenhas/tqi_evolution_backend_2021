@@ -2,13 +2,18 @@ package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.post;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import static io.restassured.RestAssured.*;
 
 public class EmprestimoTeste {
 
 
     @Test
-    public void testeDadoUmAdminQuandoCadastroEmprestimoEntaoObbtenhoStatusCode201(){
+    @DisplayName("TesteSucessoAoCadastrarEmprestimo")
+    public void testeDadoUmAdminQuandoCadastroEmprestimoEntaoObtenhoStatusCode201(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;

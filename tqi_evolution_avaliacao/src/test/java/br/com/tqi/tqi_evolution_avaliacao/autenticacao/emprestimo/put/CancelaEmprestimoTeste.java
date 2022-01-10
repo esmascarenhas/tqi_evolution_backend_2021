@@ -2,6 +2,7 @@ package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import static io.restassured.RestAssured.*;
 
@@ -9,7 +10,8 @@ public class CancelaEmprestimoTeste {
 
 
     @Test
-    public void testeDadoUmAdminQuandoCadastroEmprestimoEntaoObbtenhoStatusCode201(){
+    @DisplayName("TesteSucessoQuandoCancelaEmprestimo" )
+    public void testeDadoUmAdminQuandoCancelaEmprestimoEntaoObtenhoStatusCode201(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -33,21 +35,14 @@ public class CancelaEmprestimoTeste {
 
         System.out.println(token);
 
-        //Cadastro de Emprestimo
+        //Cancela Emprestimo
 
         given()
                 .headers("Authorization",token)
-                .body("{\n" +
-                        "  \"clienteid\": {\n" +
-                        "    \"id\": 1\n" +
-                        "  },\n" +
-                        "  \"dataPrimeiraParcela\": \"2022-02-04\",\n" +
-                        "  \"quantidadeParcelas\": 6,\n" +
-                        "  \"valorEmprestimo\": 50000\n" +
-                        "}")
+                .queryParam("1")
                 .contentType(ContentType.JSON)
                 .when()
-                .post("/v1/emprestimo")
+                .put("/v1/emprestimo/{emprestimoId}/cancela")
                 .then()
                 .log().all()
                 .assertThat()

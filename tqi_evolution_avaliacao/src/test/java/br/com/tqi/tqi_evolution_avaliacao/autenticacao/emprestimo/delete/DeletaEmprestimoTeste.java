@@ -1,17 +1,19 @@
-package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
+package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.delete;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.*;
 
-public class AlteraEmprestimoTeste {
+public class DeletaEmprestimoTeste {
 
 
     @Test
-    @DisplayName("TesteSucessoQuandoAlteraEmprestimo" )
-    public void testeDadoUmAdminQuandoAlteraEmprestimoEntaoObbtenhoStatusCode200(){
+    @DisplayName("TesteSucessoAoExcluirEmprestimo")
+    public void testeDadoUmAdminQuandoDeletaEmprestimoEntaoObtenhoStatusCode204(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -35,25 +37,18 @@ public class AlteraEmprestimoTeste {
 
         System.out.println(token);
 
-        //Altera Emprestimo
+        //Deleta Emprestimo
 
         given()
                 .headers("Authorization",token)
-                .body("{\n" +
-                        "  \"clienteid\": {\n" +
-                        "    \"id\": 1\n" +
-                        "  },\n" +
-                        "  \"dataPrimeiraParcela\": \"2022-03-04\",\n" +
-                        "  \"quantidadeParcelas\": 10,\n" +
-                        "  \"valorEmprestimo\": 50000\n" +
-                        "}")
+                .queryParam("5")
                 .contentType(ContentType.JSON)
                 .when()
-                .put("/v1/emprestimo/{emprestimoid}")
+                .delete("/v1/emprestimo/{emprestimoid}")
                 .then()
                 .log().all()
                 .assertThat()
-                .statusCode(200);
+                .statusCode(204);
 
     }
 }

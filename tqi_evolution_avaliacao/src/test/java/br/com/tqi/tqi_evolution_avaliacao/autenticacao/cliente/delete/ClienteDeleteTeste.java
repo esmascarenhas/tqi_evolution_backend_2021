@@ -12,7 +12,7 @@ public class ClienteDeleteTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso a lista de cliente")
+    @DisplayName("TesteSucessoAoExcluirCliente")
     public void testeDadoUmAdminQuandoDeletaClienteEntaoObtenhoStatusCode204(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";

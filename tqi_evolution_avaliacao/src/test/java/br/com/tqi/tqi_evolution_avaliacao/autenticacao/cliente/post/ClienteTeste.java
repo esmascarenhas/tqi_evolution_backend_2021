@@ -12,7 +12,7 @@ public class ClienteTeste {
 
 
     @Test
-    @DisplayName("Teste de acesso e inclusão de cliente")
+    @DisplayName("TesteSucesoAoIncluirCliente")
     public void testeDadoUmAdminQuandoCadastroClienteEntaoObtenhoStatusCode201(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
@@ -53,7 +53,7 @@ public class ClienteTeste {
                         "    \"numero\": 95,\n" +
                         "    \"pais\": \"Brasil\"\n" +
                         "  },\n" +
-                        "  \"nome\": \"Tiago\",\n" +
+                        "  \"nome\": \"Sonia\",\n" +
                         "  \"renda\": 4000,\n" +
                         "  \"rg\": \"05207460-90\",\n" +
                         "  \"usuario\": {\n" +

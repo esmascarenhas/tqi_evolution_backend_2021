@@ -52,7 +52,7 @@ public class Cliente implements Serializable {
     @Embedded
     private Endereco endereco;
 
-    @OneToOne(cascade=CascadeType.PERSIST)//cascade=CascadeType.PERSIST
+    @OneToOne(cascade=CascadeType.ALL)//cascade=CascadeType.PERSIST
     private UserSecurity usuario;
 
     @NotEmpty

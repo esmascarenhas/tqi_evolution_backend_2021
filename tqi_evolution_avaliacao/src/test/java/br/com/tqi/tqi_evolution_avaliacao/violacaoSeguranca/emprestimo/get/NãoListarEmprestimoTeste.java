@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
+package br.com.tqi.tqi_evolution_avaliacao.violacaoSeguranca.emprestimo.get;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
@@ -6,12 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 
 import static io.restassured.RestAssured.*;
 
-public class AlteraEmprestimoTeste {
+public class NãoListarEmprestimoTeste {
 
 
     @Test
-    @DisplayName("TesteSucessoQuandoAlteraEmprestimo" )
-    public void testeDadoUmAdminQuandoAlteraEmprestimoEntaoObbtenhoStatusCode200(){
+    @DisplayName("TesteAcessoNegadoAoListarEmprestimo")
+    public void testeDadoUmAdminQuandoListaEmprestimoEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -21,7 +21,7 @@ public class AlteraEmprestimoTeste {
 
         String token = given()
                 .body("{\n" +
-                        "  \"email\": \"admin@email.com\",\n" +
+                        "  \"email\": \"teste@email.com\",\n" +
                         "  \"senha\": \"654321\"\n" +
                         "}")
                 .contentType(ContentType.JSON)
@@ -35,25 +35,17 @@ public class AlteraEmprestimoTeste {
 
         System.out.println(token);
 
-        //Altera Emprestimo
+        //Não Lista de Emprestimo
 
         given()
                 .headers("Authorization",token)
-                .body("{\n" +
-                        "  \"clienteid\": {\n" +
-                        "    \"id\": 1\n" +
-                        "  },\n" +
-                        "  \"dataPrimeiraParcela\": \"2022-03-04\",\n" +
-                        "  \"quantidadeParcelas\": 10,\n" +
-                        "  \"valorEmprestimo\": 50000\n" +
-                        "}")
                 .contentType(ContentType.JSON)
                 .when()
-                .put("/v1/emprestimo/{emprestimoid}")
+                .get("/v1/emprestimo")
                 .then()
                 .log().all()
                 .assertThat()
-                .statusCode(200);
+                .statusCode(403);
 
     }
 }

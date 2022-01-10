@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -22,5 +24,6 @@ public class DetalheEmprestimo extends RepresentationModel<EmprestimoResumoDTO> 
     private int quantidadeParcelas;
     private StatusEmprestimo status;
     private ClienteDetalhaEmprestimo cliente;
-    private UsuarioDetalhaEmprestimo email;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private UsuarioDetalhaEmprestimo usuario;
 }

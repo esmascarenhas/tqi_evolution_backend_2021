@@ -2,6 +2,7 @@ package br.com.tqi.tqi_evolution_avaliacao.domain.entity;
 
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.StatusEmprestimo;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.NegocioException;
+import br.com.tqi.tqi_evolution_avaliacao.security.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,7 @@ import java.time.OffsetDateTime;
 public class Emprestimo implements Serializable {
 
     private static final long serialVersionUID = 7878073364245101002L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

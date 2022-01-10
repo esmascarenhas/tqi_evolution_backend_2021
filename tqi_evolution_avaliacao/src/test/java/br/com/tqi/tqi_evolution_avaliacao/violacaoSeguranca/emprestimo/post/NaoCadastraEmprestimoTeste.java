@@ -1,4 +1,4 @@
-package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
+package br.com.tqi.tqi_evolution_avaliacao.violacaoSeguranca.emprestimo.post;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
@@ -6,12 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 
 import static io.restassured.RestAssured.*;
 
-public class AlteraEmprestimoTeste {
+public class NaoCadastraEmprestimoTeste {
 
 
     @Test
-    @DisplayName("TesteSucessoQuandoAlteraEmprestimo" )
-    public void testeDadoUmAdminQuandoAlteraEmprestimoEntaoObbtenhoStatusCode200(){
+    @DisplayName("TesteAcessoNegadoAoCadastrarEmprestimo")
+    public void testeDadoUmAdminQuandoCadastroEmprestimoEntaoObtenhoStatusCode403(){
         //configurar o caminho comum de acesso a minha api
         baseURI = "http://localhost";
         port = 8080;
@@ -21,8 +21,8 @@ public class AlteraEmprestimoTeste {
 
         String token = given()
                 .body("{\n" +
-                        "  \"email\": \"admin@email.com\",\n" +
-                        "  \"senha\": \"654321\"\n" +
+                        "  \"email\": \"usuario@email.com\",\n" +
+                        "  \"senha\": \"123456\"\n" +
                         "}")
                 .contentType(ContentType.JSON)
                 .when()
@@ -35,7 +35,7 @@ public class AlteraEmprestimoTeste {
 
         System.out.println(token);
 
-        //Altera Emprestimo
+        //Não Cadastro de Emprestimo
 
         given()
                 .headers("Authorization",token)
@@ -43,17 +43,17 @@ public class AlteraEmprestimoTeste {
                         "  \"clienteid\": {\n" +
                         "    \"id\": 1\n" +
                         "  },\n" +
-                        "  \"dataPrimeiraParcela\": \"2022-03-04\",\n" +
-                        "  \"quantidadeParcelas\": 10,\n" +
+                        "  \"dataPrimeiraParcela\": \"2022-02-04\",\n" +
+                        "  \"quantidadeParcelas\": 6,\n" +
                         "  \"valorEmprestimo\": 50000\n" +
                         "}")
                 .contentType(ContentType.JSON)
                 .when()
-                .put("/v1/emprestimo/{emprestimoid}")
+                .post("/v1/emprestimo")
                 .then()
                 .log().all()
                 .assertThat()
-                .statusCode(200);
+                .statusCode(403);
 
     }
 }
