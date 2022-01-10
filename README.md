@@ -10,7 +10,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 
 
 <h2>
-🛑 Framework utilizados
+ 🧮 Framework utilizados
 </h2>
 
 - [x] Java JDK 11
@@ -19,7 +19,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 - [x] Banco de Dados MySQL
 - [x] Spring initializr 
 
-<h2> 📚 Desafio</h2>
+<h2> ✨ Desafio</h2>
 
 🔸 <strong> Visão geral:  Sistema de Análise de Crédito para uma Empresa de Emprestimos </strong>
 
@@ -37,6 +37,12 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  Autenticação será realizada por e-mail e senha.<br>
 	  Classe e repositorio de Usuários <br>
 	  Controlador para autenticação<br>
+	  
+	  
+<h2> 👣 Solução</h2>
+	  
+	  
+	  
 	
 🔸 <strong> Security </strong><br>
 	  Utilização do JWT para geração e validação de token para autenticação.<br>
@@ -47,6 +53,29 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  Utilização do JUnit, REST-Assured e mockmvc para testes unitários e integração.<br>
 	  Cobertura de teste das classe Controller<br>
 	  Cobertura de testes das classes de serviço e repository<br>
+	  
+	  
+	  
+![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger1.png?raw=true)
+	  
+	  
+
+
+![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem1.png?raw=true)
+
+
+
+
+![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger3.png?raw=true)
+
+
+
+
+![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem2.png?raw=true)
+
+
+
+
 	
 	
 <h2> 🤝 Fontes de Estudo e contribuições </h2>
