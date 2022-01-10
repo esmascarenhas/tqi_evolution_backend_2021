@@ -3,7 +3,7 @@
 Projeto avaliação TQI Evolution 2022
 </h1>
 
-<p>Sugestão para o back-end de um: <strong>sistema de análise de crédito</strong>.
+<p><strong>Sugestão para o back-end de um: <strong>sistema de análise de crédito</strong>.
 Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backend_2021 da  <strong> <a href="https://www.tqi.com.br/"> TQI  </a></strong> 🧡💛.
 
 
@@ -15,9 +15,11 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 
 - [x] Java JDK 11
 - [x] IDE IntelliJ
-- [x] Documentação e consumo no Swagger 
+- [x] Documentação e consumo no Swagger, Postman e Insomnia 
+- [x] Security - JWT e Spring Security
+- [x] Testes - Junit, MockMVC e Rest-Assured
 - [x] Banco de Dados MySQL
-- [x] Spring initializr 
+- [x] Estrutura - spring initializr 
 
 <ul>
 <h2> ✨ Desafio</h2>
@@ -52,9 +54,9 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  
    <p><strong>Na Homepage do Swagger será apresentado quatro controladores:<br>
 	
-	🔻 Controle de Auteenticação - realiza geração de token para autenticação na API;<br>
-	🔻 Cliente Controller - Contrala os serviços de cadastro, consulta, alteração e exclusão do Banco de dados;<br>
-	🔻 Emprestimo Controller - Realiza solicitação de emprestimo, acompanhamento, detalhe, alteração e exclusão;<br>
+	🔻 Controle de Auteenticação - realiza geração de token para autenticação na API;
+	🔻 Cliente Controller - Contrala os serviços de cadastro, consulta, alteração e exclusão do Banco de dados;
+	🔻 Emprestimo Controller - Realiza solicitação de emprestimo, acompanhamento, detalhe, alteração e exclusão;
 	🔻 Status Aplicação - Testa se aplicação está funcionando.
 	
     
@@ -62,7 +64,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	  
 	  
 	  
-![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger1.png?raw=true)
+![Demo Animation](https://github.com/esmascarenhas/tqi_evolution_backend_2021/blob/assets/swagger1.png?raw=true)
 	 
 	
 🔸 <strong> Security </strong><br>
@@ -82,7 +84,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	
 </br>
 
-![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem1.png?raw=true)
+![Demo Animation](https://github.com/esmascarenhas/tqi_evolution_backend_2021/blob/assets/Imagem1.png?raw=true)
 
 
 🔸 <strong> Controlador de cliente - Composto dos seguintes metodos: </strong>
@@ -98,7 +100,7 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 <br>
 <br>
 
-![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/swagger3.png?raw=true)
+![Demo Animation](https://github.com/esmascarenhas/tqi_evolution_backend_2021/blob/assets/cliente.png?raw=true)
 
 
 	   
@@ -107,12 +109,12 @@ Projeto que tive o prazer em desenvolver para avaliação do tqi_evolution_backe
 	   🔹 Método GET (sem parametro) - Consulta os Emprestimos dos clientes;<br>
 	   🔹 Método GET (com id do cliente) - Acompanhamento dos Emprestimos de um cliente;<br>
 	   🔹 Método Post (sem parametro) - Realiza o cadastro de Emprestimo para o cliente;<br>
-	   🔹 Método Put (com id do cliente) - Altera informações do Emprestimo do cliente;<br>
+	   🔹 Método Put (com id do cliente) - Altera informações do Emprestimo do cliente: atualiza, finaliza, suspende e cancela;<br>
 	   🔹 Método Delete (com id do cliente) - Exclui um emprestimo do sistema;<br>
 <br>
 
 
-![Demo Animation](https://github.com/esmascarenhas/desafiotqi/blob/assets/Imagem2.png?raw=true)
+![Demo Animation](https://github.com/esmascarenhas/tqi_evolution_backend_2021/blob/assets/Imagem2.png?raw=true)
 
 
 	   
