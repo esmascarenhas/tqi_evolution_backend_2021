@@ -1,0 +1,5 @@
+NotEmpty=Campo deve ser informado.
+NotNull=Campo deve ser informado.
+Size=deve ter no mínimo {2} e no máximo {1} caracteres.
+Email=deve ser um email valido.
+CPF=deve ser um cpf valido.
