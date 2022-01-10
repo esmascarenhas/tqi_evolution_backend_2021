@@ -1,10 +1,11 @@
-package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo;
+package br.com.tqi.tqi_evolution_avaliacao.autenticacao.emprestimo.put;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
+
 import static io.restassured.RestAssured.*;
 
-public class EmprestimoTeste {
+public class FinalizaEmprestimoTeste {
 
 
     @Test
