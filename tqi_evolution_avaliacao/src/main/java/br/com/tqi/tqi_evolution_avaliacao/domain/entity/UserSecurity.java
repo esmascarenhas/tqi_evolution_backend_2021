@@ -38,7 +38,11 @@ public class UserSecurity  implements Serializable {
     private String senha;
     private RolesUser roles;
 
-    @OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario",
+            orphanRemoval = true,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+
     private List<Emprestimo> emprestimoLista = new ArrayList<>();
 
     @Id

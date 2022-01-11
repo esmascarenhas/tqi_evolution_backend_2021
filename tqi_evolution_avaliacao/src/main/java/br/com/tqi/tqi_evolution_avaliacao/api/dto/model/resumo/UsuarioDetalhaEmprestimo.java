@@ -5,8 +5,10 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDetalhaEmprestimo {
 
-    private Integer id;
+    private String id;
     private String email;
 }

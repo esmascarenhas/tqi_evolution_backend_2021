@@ -2,6 +2,9 @@ package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,6 +20,7 @@ public class EmprestimoDTOImput implements Serializable {
     @Valid
     private ClienteIdImput clienteid;
     @Valid
+    @ManyToOne(cascade = CascadeType.ALL)
     private UsuarioIdImput usuarioid;
 
     private double valorEmprestimo;

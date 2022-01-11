@@ -24,6 +24,6 @@ public class DetalheEmprestimo extends RepresentationModel<EmprestimoResumoDTO> 
     private int quantidadeParcelas;
     private StatusEmprestimo status;
     private ClienteDetalhaEmprestimo cliente;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private UsuarioDetalhaEmprestimo usuario;
 }

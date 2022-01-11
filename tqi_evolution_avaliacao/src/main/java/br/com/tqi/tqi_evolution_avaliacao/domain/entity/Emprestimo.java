@@ -72,9 +72,8 @@ public class Emprestimo implements Serializable {
     @ApiModelProperty(value = "Código do cliente")
     private Cliente cliente;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @ApiModelProperty(value = "Código do usuário")
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuarioid")
     private UserSecurity usuario;
 
 

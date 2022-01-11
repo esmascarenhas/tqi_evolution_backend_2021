@@ -1,6 +1,8 @@
 package br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +11,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuarioIdImput implements Serializable {
 
 
