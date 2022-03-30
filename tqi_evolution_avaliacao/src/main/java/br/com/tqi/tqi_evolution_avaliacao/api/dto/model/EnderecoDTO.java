@@ -11,6 +11,8 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 public class EnderecoDTO {
 
 

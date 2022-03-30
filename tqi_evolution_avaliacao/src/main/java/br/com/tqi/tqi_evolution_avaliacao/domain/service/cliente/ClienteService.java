@@ -6,6 +6,8 @@ import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.ClienteDTO;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.model.imput.ClienteDTOImput;
 import br.com.tqi.tqi_evolution_avaliacao.api.dto.response.MessageResponse;
 import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Cliente;
+import br.com.tqi.tqi_evolution_avaliacao.domain.entity.Endereco;
+import br.com.tqi.tqi_evolution_avaliacao.domain.entity.UserSecurity;
 import br.com.tqi.tqi_evolution_avaliacao.domain.enums.RolesUser;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.ClienteNaoEncontradoException;
 import br.com.tqi.tqi_evolution_avaliacao.domain.exception.NegocioException;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @Service
@@ -49,12 +52,38 @@ public class ClienteService {
 
 
     public MessageResponse update (Integer id, ClienteDTO clienteDTO) throws ClienteNaoEncontradoException {
-        clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
-        Cliente clienteAtualizado = clienteMapper.toEntity2(clienteDTO);
-        Cliente clientesalvo = clienteRepository.save(clienteAtualizado);
+       var cli= clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
+        Cliente clientesalvo = clienteMapper.toEntity2(clienteDTO);
+        Cliente clienteatualizado = clienteRepository.save(cli);
 
-        MessageResponse messageResponse = createMessage("Cliente atualizado com sucesso ", clientesalvo.getId()," - " + clientesalvo.getNome());
-        return messageResponse;
+/*
+
+            UserSecurity user = new UserSecurity();
+        user.setSenha(clientesalvo.getUsuario().getSenha());
+        user.setEmail(clientesalvo.getUsuario().getEmail());
+        cli.setUsuario(user);
+
+        cli.setNome(clientesalvo.getNome());
+        cli.setRg(clientesalvo.getRg());
+        cli.setRenda(clientesalvo.getRenda());
+        cli.setCpf(clientesalvo.getCpf());
+
+        Endereco end = new Endereco();
+
+            end.setLogradouro(clientesalvo.getEndereco().getLogradouro());
+            end.setComplemento(clientesalvo.getEndereco().getComplemento());
+            end.setNumero(clientesalvo.getEndereco().getNumero());
+            end.setBairro(clientesalvo.getEndereco().getBairro());
+            end.setCidade(clientesalvo.getEndereco().getCidade());
+            end.setEstado(clientesalvo.getEndereco().getEstado());
+            end.setPais(clientesalvo.getEndereco().getPais());
+            end.setCep(clientesalvo.getEndereco().getCep());
+
+            cli.setEndereco(end);*/
+
+
+            MessageResponse messageResponse = createMessage("Cliente atualizado com sucesso ", clienteatualizado.getId()," - " + clienteatualizado.getNome());
+             return messageResponse;
 
     }
 
@@ -68,6 +97,34 @@ public class ClienteService {
     private MessageResponse createMessage (String msm, Integer id, String name){
         return MessageResponse.builder().message(msm + id + name).build();
 
+    }
+
+    private Cliente responseBody(Integer id) throws ClienteNaoEncontradoException {
+        var cli= clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException(id));
+
+        UserSecurity user = new UserSecurity();
+        user.setSenha(cli.getUsuario().getSenha());
+        user.setEmail(cli.getUsuario().getEmail());
+        cli.setUsuario(user);
+
+        cli.setNome(cli.getNome());
+        cli.setRg(cli.getRg());
+        cli.setRenda(cli.getRenda());
+        cli.setCpf(cli.getCpf());
+
+        Endereco end = new Endereco();
+
+        end.setLogradouro(cli.getEndereco().getLogradouro());
+        end.setComplemento(cli.getEndereco().getComplemento());
+        end.setNumero(cli.getEndereco().getNumero());
+        end.setBairro(cli.getEndereco().getBairro());
+        end.setCidade(cli.getEndereco().getCidade());
+        end.setEstado(cli.getEndereco().getEstado());
+        end.setPais(cli.getEndereco().getPais());
+        end.setCep(cli.getEndereco().getCep());
+
+        cli.setEndereco(end);
+        return cli;
     }
 
 

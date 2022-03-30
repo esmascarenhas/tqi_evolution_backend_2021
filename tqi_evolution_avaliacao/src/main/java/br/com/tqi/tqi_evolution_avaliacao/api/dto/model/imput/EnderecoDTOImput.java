@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 public class EnderecoDTOImput implements Serializable {
 
 

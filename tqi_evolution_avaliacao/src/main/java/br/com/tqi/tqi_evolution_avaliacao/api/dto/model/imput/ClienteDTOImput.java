@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 public class ClienteDTOImput implements Serializable {
 
 

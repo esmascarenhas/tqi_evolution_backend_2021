@@ -1,0 +1,22 @@
+version: '3'
+services:
+  tqi_evolution:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: tqi_evolution_mysql/api
+    ports:
+      - '8080:8080'
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    ports:
+    - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tqi_evolution_mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=docker
+    volumes:
+    - ./docker/volume_tqi_mysql:/var/lib/mysql
